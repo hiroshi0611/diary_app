@@ -1,0 +1,12 @@
+h1.c-page_title 日記一覧
+
+= link_to '日記の登録', new_diary_path, class: 'c-btn'
+
+table.c-table
+  tbody.c-table__body
+    - @diaries.each do |diary|
+      tr.c-table__tr
+        td.c-table__td = link_to diary.title, diary, class: 'c-link'
+        td.c-table__td = diary.created_at
+        td.c-table__td = link_to '編集', edit_diary_path(diary)
+        td.c-table__td = link_to '削除', diary, method: :delete, data: { confirm: "日記[#{diary.title}]を削除します。いいですか？"}, class: 'c-btn c-btn--danger'

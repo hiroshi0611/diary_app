@@ -1,0 +1,10 @@
+h1.c-page_title 日記編集
+
+= link_to '一覧', diaries_path, class: 'c-link'
+
+= form_with model: @diary, local: true, html: { class: 'c-form'} do |f|
+  = f.label :title, class: 'c-form__label'
+  = f.text_field :title, class: 'c-text'
+  = f.label :description, class: 'c-form__label'
+  = f.text_area :description, class: 'c-textarea'
+  = f.submit nil, class: 'c-btn c-btn--success'
