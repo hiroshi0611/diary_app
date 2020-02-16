@@ -1,6 +1,10 @@
 class DiariesController < ApplicationController
+
+  before_action :login_required
+
   def index
-    @diaries = Diary.all
+    # @diaries = Diary.all
+    @diaries = current_user.diaries
   end
 
   def new
@@ -8,7 +12,8 @@ class DiariesController < ApplicationController
   end
 
   def create
-    @diary = Diary.new(diary_params)
+    # @diary = Diary.new(diary_params)
+    @diary = current_user.diaries.new(diary_params)
 
     if @diary.save
       redirect_to root_path, notice: "日記[#{@diary.title}]を登録しました"
@@ -18,11 +23,13 @@ class DiariesController < ApplicationController
   end
 
   def show
-    @diary = Diary.find(params[:id])
+    # @diary = Diary.find(params[:id])
+    @diary = current_user.diaries.find(params[:id])
   end
 
   def edit
-    @diary = Diary.find(params[:id])
+    # @diary = Diary.find(params[:id])
+    @diary = current_user.diaries.find(params[:id])
   end
 
   def update
@@ -41,5 +48,9 @@ class DiariesController < ApplicationController
 
   def diary_params
     params.require(:diary).permit(:title, :description)
+  end
+
+  def login_required
+    redirect_to login_path unless current_user
   end
 end

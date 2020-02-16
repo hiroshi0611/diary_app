@@ -1,0 +1,10 @@
+h1.c-page_title ログイン
+
+= form_with scope: :authorization, local: true, html: { class: 'c-form'} do |f|
+  = f.label :email, class: 'c-form__label'
+  = f.text_field :email, class: 'c-form__text'
+  = f.label :password, class: 'c-form__label'
+  = f.password_field :password, class: 'c-form__text'
+  = f.submit 'ログインする', class: 'c-btn c-btn--success'
+
+= link_to 'back', root_path

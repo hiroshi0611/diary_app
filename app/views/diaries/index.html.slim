@@ -1,3 +1,10 @@
+header
+  = link_to 'ユーザー登録', new_user_path
+  = link_to 'ログイン', login_path
+  = link_to 'ログアウト', logout_path, method: :delete, class: 'c-header__nav'
+  - if current_user && current_user.email
+  span.c-header__nav ようこそ#{current_user.username}さん
+
 h1.c-page_title 日記一覧
 
 = link_to '日記の登録', new_diary_path, class: 'c-btn'
